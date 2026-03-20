@@ -21,4 +21,25 @@ public class BookDAO {
         String sqlQuery = "SELECT * FROM books";
         return jdbcTemplate.query(sqlQuery, new BeanPropertyRowMapper<>(Book.class));
     }
+
+    public void create(String title, String author, Integer year) {
+        String sqlQuery = "INSERT INTO books (title, author, year) values (?,?,?)";
+        jdbcTemplate.update(sqlQuery, title, author, year);
+    }
+
+    public Book show(Long id) {
+        String sqlQuery = "SELECT * FROM books WHERE id = ?";
+        List<Book> bookList = jdbcTemplate.query(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
+        return bookList.stream().findAny().orElse(null);
+    }
+
+    public void update(Long id, Book updatedBook) {
+        String sqlQuery = "UPDATE books set title = ?, author = ?, year = ? where book_id = ?";
+        jdbcTemplate.update(sqlQuery, updatedBook.getTitle(), updatedBook.getTitle(), updatedBook.getYear(), id);
+    }
+
+    public void delete(Long id) {
+        String sqlQuery = "DELETE FROM books WHERE id = ?";
+        jdbcTemplate.update(sqlQuery, id);
+    }
 }
