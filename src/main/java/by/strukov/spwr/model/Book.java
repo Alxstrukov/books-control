@@ -1,9 +1,7 @@
 package by.strukov.spwr.model;
 
 
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +18,7 @@ public class Book {
     @NotEmpty(message = "Укажите автора")
     private String author;
 
-    @NotEmpty(message = "Укажите год издания книги")
-    @Min(value = 0, message = "Год не может быть отрицательным")
+    @NotNull(message = "Укажите год издания книги")
+    @Positive(message = "Год не может быть отрицательным")
     private Integer year;
 }
