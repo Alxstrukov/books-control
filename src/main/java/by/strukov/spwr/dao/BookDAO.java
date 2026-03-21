@@ -28,26 +28,31 @@ public class BookDAO {
         jdbcTemplate.update(sqlQuery, newBook.getTitle(), newBook.getAuthor(), newBook.getYear());
     }
 
-    public Book show(Long id) {
-        String sqlQuery = "SELECT * FROM books WHERE id = ?";
+    public Book show(int id) {
+        String sqlQuery = "SELECT * FROM books WHERE book_id = ?";
         List<Book> bookList = jdbcTemplate.query(sqlQuery, new Object[]{id}, new BeanPropertyRowMapper<>(Book.class));
         return bookList.stream().findAny().orElse(null);
     }
 
-    public void update(Long id, Book updatedBook) {
+    public void update(Book updatedBook) {
         String sqlQuery = "UPDATE books set title = ?, author = ?, year = ? where book_id = ?";
-        jdbcTemplate.update(sqlQuery, updatedBook.getTitle(), updatedBook.getTitle(), updatedBook.getYear(), id);
+        jdbcTemplate.update(sqlQuery,
+                updatedBook.getTitle(),
+                updatedBook.getAuthor(),
+                updatedBook.getYear(),
+                updatedBook.getBook_id());
     }
 
-    public Optional<Book> show(String title) {
-        String sqlQuery = "SELECT * FROM books WHERE title = ?";
-        return jdbcTemplate.query(sqlQuery,
-                new Object[]{title},
-                new BeanPropertyRowMapper<>(Book.class)).stream().findAny();
-    }
-
-    public void delete(Long id) {
-        String sqlQuery = "DELETE FROM books WHERE id = ?";
+    public void delete(int id) {
+        String sqlQuery = "DELETE FROM books WHERE book_id = ?";
         jdbcTemplate.update(sqlQuery, id);
+    }
+
+    public boolean isFullEquals(Book book) {
+        String sqlQuery = "SELECT * FROM books WHERE title = ? and author = ? and year = ?";
+        List<Book> books = jdbcTemplate.query(sqlQuery,
+                new Object[]{book.getTitle(), book.getAuthor(), book.getYear()},
+                new BeanPropertyRowMapper<>(Book.class));
+        return !books.isEmpty();
     }
 }

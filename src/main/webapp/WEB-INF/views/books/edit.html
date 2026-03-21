@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добавить книгу</title>
+    <title>Редактировать книгу</title>
 
     <style>
         /* ===== Тело страницы (твой градиент) ===== */
@@ -122,7 +122,7 @@
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
 
-        .form-back {
+        .form-cancel {
             display: block;
             width: 100%;
             padding: 14px;
@@ -141,33 +141,18 @@
             letter-spacing: 0.5px;
         }
 
-        .form-back:hover {
+        .form-cancel:hover {
             background: #667eea;
             color: white;
             transform: translateY(-2px);
-        }
-
-        /* ===== Адаптивность ===== */
-        @media (max-width: 600px) {
-            .form-container {
-                padding: 30px 20px;
-            }
-
-            .form-title {
-                font-size: 22px;
-            }
-
-            body {
-                padding: 20px 10px;
-            }
         }
     </style>
 </head>
 <body>
 <div class="form-container">
-    <h2 class="form-title">📚 Добавить книгу</h2>
+    <h2 class="form-title">✏️ Редактировать книгу</h2>
 
-    <form th:method="POST" th:action="@{/books}" th:object="${book}">
+    <form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBook_id()})}" th:object="${book}">
 
         <!-- Название -->
         <div class="form-group">
@@ -179,7 +164,6 @@
                    th:field="*{title}"
                    id="title"
                    placeholder="Введите название книги"
-                   autofocus
                    th:classappend="${#fields.hasErrors('title')} ? 'error'">
             <div class="form-error"
                  th:if="${#fields.hasErrors('title')}"
@@ -217,8 +201,8 @@
         </div>
 
         <!-- Кнопки -->
-        <button type="submit" class="form-submit">📖 Добавить книгу в библиотеку</button>
-        <a href="/books" class="form-back">← На главную</a>
+        <button type="submit" class="form-submit">✅ Обновить книгу</button>
+        <a href="/books" class="form-cancel">✕ Отмена</a>
 
     </form>
 </div>
@@ -228,10 +212,10 @@
 
 <!--
 <!DOCTYPE html>
-<html lang="en" xmlns::th="http://thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Добавление книги</title>
+    <title>Редактирование книги</title>
     <style>
         * {
             margin: 0;
@@ -304,7 +288,7 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/books}" th:object="${book}">
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBook_id()})}" th:object="${book}">
     <label for="title">Введите название книги</label>
     <input type="text" th:field="*{title}" id="title">
     <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
@@ -320,7 +304,9 @@
     <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
     <br>
 
-    <input type="submit" value="Добавить книгу в библиотеку">
+
+
+    <input type="submit" value="Обновить книгу">
 </form>
 <br>
 <a href="/books">На главную</a>

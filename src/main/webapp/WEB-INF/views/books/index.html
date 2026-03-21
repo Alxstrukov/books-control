@@ -1,20 +1,348 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека книг</title>
+
+    <style>
+        /* ===== Тело страницы (твой градиент) ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        /* ===== Контейнер ===== */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* ===== Заголовок страницы ===== */
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+        }
+
+        /* ===== Карточка списка ===== */
+        .books-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== Список книг ===== */
+        .books-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .book-item {
+            padding: 20px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .book-item:hover {
+            background: white;
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-link {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        .book-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .book-author {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 4px;
+        }
+
+        .book-year {
+            font-size: 13px;
+            color: #999;
+        }
+
+        .book-icon {
+            margin-right: 8px;
+        }
+
+        /* ===== Пустой список ===== */
+        .empty-message {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .empty-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* ===== Кнопка добавления ===== */
+        .btn-add {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 25px;
+        }
+
+        .btn-add:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* ===== Разделитель ===== */
+        .divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+
+        /* ===== Счётчик книг ===== */
+        .books-count {
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        /* ===== Адаптивность ===== */
+        @media (max-width: 600px) {
+            .page-title {
+                font-size: 28px;
+            }
+
+            .books-card {
+                padding: 20px;
+            }
+
+            .book-title {
+                font-size: 16px;
+            }
+
+            body {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Заголовок страницы -->
+    <header class="page-header">
+        <h1 class="page-title">📚 Библиотека книг</h1>
+        <p class="page-subtitle">Управление коллекцией литературы</p>
+    </header>
+
+    <!-- Карточка со списком -->
+    <div class="books-card">
+        <!-- Счётчик книг -->
+        <div class="books-count" th:if="${!books.isEmpty()}">
+            Всего книг: <strong th:text="${books.size()}">0</strong>
+        </div>
+
+        <!-- Список книг -->
+        <div class="books-list" th:if="${!books.isEmpty()}">
+            <div class="book-item" th:each="book : ${books}">
+                <a th:href="@{/books/{id}(id=${book.getBook_id()})}"
+                   class="book-link">
+                    <div class="book-title">
+                        <span class="book-icon">📖</span>
+                        <span th:text="${book.getTitle()}">Название книги</span>
+                    </div>
+                    <div class="book-author">
+                        ✍️ <span th:text="${book.getAuthor()}">Автор</span>
+                    </div>
+                    <div class="book-year">
+                        📅 <span th:text="${book.getYear()}">2024</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Если книг нет -->
+        <div class="empty-message" th:if="${books.isEmpty()}">
+            <span class="empty-icon">📭</span>
+            <p>В библиотеке пока нет книг</p>
+            <p>Добавьте первую книгу!</p>
+        </div>
+
+        <!-- Разделитель -->
+        <hr class="divider">
+
+        <!-- Кнопка добавления -->
+        <a th:href="@{/books/new}" class="btn-add">
+            ➕ Добавить новую книгу
+        </a>
+        <br>
+        <a th:href="@{/main}" class="btn-add">
+            На главную
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
 <html lang="en" xmlns::th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Книги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;  /* Элементы друг под другом */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Контейнер для всего контента */
+        .container {
+            text-align: center;      /* Центрирует текст заголовка */
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Заголовок */
+        h1 {
+            text-transform: uppercase;
+            font-size: 48px;
+            color: white;
+            margin-bottom: 30px;     /* Отступ снизу до кнопок */
+            text-align: center;
+        }
+
+        /* Контейнер для кнопок */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center; /* Кнопки по центру */
+        }
+
+        /* Сброс стандартных стилей ссылки */
+        .btn {
+            display: inline-block;
+            text-decoration: none;      /* Убираем подчеркивание */
+            padding: 12px 24px;         /* Отступы внутри */
+            background-color: #667eea;  /* Цвет фона */
+            color: white;               /* Цвет текста */
+            border-radius: 16px;         /* Закругление углов */
+            font-weight: bold;
+            transition: all 0.3s ease;  /* Плавная анимация */
+            border: 2px solid #667eea;
+        }
+
+        /* При наведении */
+        .btn:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px); /* Легкий подъем */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* При нажатии */
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Второстепенная кнопка (прозрачная) */
+        .btn-secondary {
+            background-color: transparent;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* Базовый стиль ссылки */
+        .link {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color 0.2s ease;
+        }
+    </style>
 </head>
 <body>
 
 <div th:each="book :${books}">
-    <a th:href="@{/books/{id}(id=${book.getBookID()})}"
-       th:text="${book.getTitle()} + ', ' +${book.getAuthor()} + ', ' + ${book.getYear()}">book</a>
+    <a th:href="@{/books/{id}(id=${book.getBook_id()})}"
+       th:text="${book.getTitle()} + ', ' +${book.getAuthor()} + ', ' + ${book.getYear()}" class="btn btn-secondary">book</a>
 </div>
 
 <br>
 <hr>
 
-<a th:href="@{/books/new}">Добавить новую книгу</a>
+<a th:href="@{/books/new}" class="btn btn-blue">Добавить новую книгу</a>
 
 </body>
-</html>
+</html>-->

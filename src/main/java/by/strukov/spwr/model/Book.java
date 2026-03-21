@@ -5,12 +5,14 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString
 public class Book {
-    private Long bookID;
+    private int book_id;
 
     @NotEmpty(message = "Укажите название книги")
     private String title;

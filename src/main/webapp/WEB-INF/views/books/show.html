@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о книге</title>
+
+    <style>
+        /* ===== Тело страницы (твой градиент) ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* ===== Контейнер ===== */
+        .card-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .card-title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        /* ===== Информация о книге ===== */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 500;
+            text-align: right;
+        }
+
+        /* ===== Разделитель ===== */
+        .divider {
+            border: none;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 30px 0;
+            border-radius: 2px;
+        }
+
+        /* ===== Кнопки действий ===== */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn-edit {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-edit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-delete {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
+        }
+
+        .btn-back {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: transparent;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            margin-top: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-back:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Иконки ===== */
+        .icon {
+            margin-right: 8px;
+        }
+
+        /* ===== Адаптивность ===== */
+        @media (max-width: 600px) {
+            .card-container {
+                padding: 30px 20px;
+            }
+
+            .card-title {
+                font-size: 22px;
+            }
+
+            .info-row {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .info-value {
+                text-align: left;
+            }
+
+            body {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="card-container">
+    <h2 class="card-title">📖 Информация о книге</h2>
+
+    <!-- Информация о книге -->
+    <!--<div class="info-row">
+        <span class="info-label">ID</span>
+        <span class="info-value" th:text="${book.getBook_id()}">1</span>
+    </div>-->
+
+    <div class="info-row">
+        <span class="info-label">Название</span>
+        <span class="info-value" th:text="${book.getTitle()}">Название книги</span>
+    </div>
+
+    <div class="info-row">
+        <span class="info-label">Автор</span>
+        <span class="info-value" th:text="${book.getAuthor()}">Автор</span>
+    </div>
+
+    <div class="info-row">
+        <span class="info-label">Год издания</span>
+        <span class="info-value" th:text="${book.getYear()}">2024</span>
+    </div>
+
+    <!-- Разделитель -->
+    <hr class="divider">
+
+    <!-- Кнопки действий -->
+    <div class="action-buttons">
+        <a th:href="@{/books/{id}/edit(id=${book.getBook_id()})}"
+           class="btn-edit">
+            ✏️ Редактировать книгу
+        </a>
+
+        <a th:href="@{/books/{id}/delete(id=${book.getBook_id()})}"
+           class="btn-delete"
+           onclick="return confirm('Вы уверены, что хотите удалить эту книгу?');">
+            🗑️ Удалить книгу
+        </a>
+
+        <a href="/books" class="btn-back">
+            ← Назад к списку
+        </a>
+    </div>
+</div>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Книга</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;  /* Элементы друг под другом */
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Контейнер для всего контента */
+        .container {
+            text-align: center;      /* Центрирует текст заголовка */
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Заголовок */
+        h1 {
+            text-transform: uppercase;
+            font-size: 48px;
+            color: white;
+            margin-bottom: 30px;     /* Отступ снизу до кнопок */
+            text-align: center;
+        }
+
+        /* Контейнер для кнопок */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center; /* Кнопки по центру */
+        }
+
+        /* Сброс стандартных стилей ссылки */
+        .btn {
+            display: inline-block;
+            text-decoration: none;      /* Убираем подчеркивание */
+            padding: 12px 24px;         /* Отступы внутри */
+            background-color: #667eea;  /* Цвет фона */
+            color: white;               /* Цвет текста */
+            border-radius: 16px;         /* Закругление углов */
+            font-weight: bold;
+            transition: all 0.3s ease;  /* Плавная анимация */
+            border: 2px solid #667eea;
+        }
+
+        /* При наведении */
+        .btn:hover {
+            background-color: #5568d3;
+            transform: translateY(-2px); /* Легкий подъем */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* При нажатии */
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Второстепенная кнопка (прозрачная) */
+        .btn-secondary {
+            background-color: transparent;
+            color: #667eea;
+        }
+
+        .btn-secondary:hover {
+            background-color: #667eea;
+            color: white;
+        }
+
+        /* Базовый стиль ссылки */
+        .link {
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 500;
+            position: relative;
+            padding-bottom: 2px;
+            transition: color 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <a th:text="${book.getBook_id()}">value</a>
+    <br>
+    <a th:text="${book.getTitle()}">value</a>
+    <br>
+    <a th:text="${book.getAuthor()}">value</a>
+    <br>
+    <a th:text="${book.getYear()}">value</a>
+    <br>
+</div>
+
+<br>
+<hr>
+
+<a th:href="@{/books/{id}/edit(id=${book.getBook_id()})}">Редактировать книгу</a>
+<br>
+<a th:href="@{/books/{id}/delete(id=${book.getBook_id()})}">Удалить книгу</a>
+
+</body>
+</html>-->
