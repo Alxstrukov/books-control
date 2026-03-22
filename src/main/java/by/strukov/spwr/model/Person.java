@@ -6,19 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class Person {
-    private Long personID;
+    private Integer person_id;//очень ВАЖНО чтобы имя поля совпадало с именем столбца в БД
 
     @NotEmpty(message = "Поле не может быть пустым")
-    @Pattern(regexp = "^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+}",
+    @Pattern(regexp = "^[А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+ [А-ЯЁ][а-яё]+",
             message = "ФИО должно быть указано кириллицей в формате: Иванов Иван Иванович")
     private String fullName;
 
-    @NotNull
-    @Size(min = 1900)
-    @Pattern(regexp = "[0-9]{4}", message = "Год рождения должен состоять из четырёх цифр и не менее 1900")
+    @NotNull(message = "Вы не указали дату рождения")
+    @Min(value = 1900, message = "Год не может быть ранее 1900")
     private Integer birthDate;
 }

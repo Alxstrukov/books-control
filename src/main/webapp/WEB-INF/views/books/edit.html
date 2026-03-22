@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -154,7 +154,7 @@
 
     <form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBook_id()})}" th:object="${book}">
 
-        <!-- Название -->
+        &lt;!&ndash; Название &ndash;&gt;
         <div class="form-group">
             <label class="form-label" for="title">
                 Название <span class="required">*</span>
@@ -170,7 +170,7 @@
                  th:errors="*{title}">Title error</div>
         </div>
 
-        <!-- Автор -->
+        &lt;!&ndash; Автор &ndash;&gt;
         <div class="form-group">
             <label class="form-label" for="author">
                 Автор <span class="required">*</span>
@@ -186,7 +186,7 @@
                  th:errors="*{author}">Author error</div>
         </div>
 
-        <!-- Год -->
+        &lt;!&ndash; Год &ndash;&gt;
         <div class="form-group">
             <label class="form-label" for="year">Год издания</label>
             <input type="text"
@@ -200,91 +200,21 @@
                  th:errors="*{year}">Year error</div>
         </div>
 
-        <!-- Кнопки -->
+        &lt;!&ndash; Кнопки &ndash;&gt;
         <button type="submit" class="form-submit">✅ Обновить книгу</button>
         <a href="/books" class="form-cancel">✕ Отмена</a>
 
     </form>
 </div>
 </body>
-</html>
+</html>-->
 
 
-<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Редактирование книги</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;  /* Элементы друг под другом */
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Контейнер для всего контента */
-        .container {
-            text-align: center;      /* Центрирует текст заголовка */
-            padding: 50px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Заголовок */
-        h1 {
-            text-transform: uppercase;
-            font-size: 48px;
-            color: white;
-            margin-bottom: 30px;     /* Отступ снизу до кнопок */
-            text-align: center;
-        }
-
-        /* Контейнер для кнопок */
-        .button-group {
-            display: flex;
-            gap: 20px;
-            justify-content: center; /* Кнопки по центру */
-        }
-
-        /* Стили кнопок */
-        .btn {
-            text-decoration: none;
-            padding: 15px 35px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            border: 2px solid white;
-        }
-
-        .btn-primary {
-            background: white;
-            color: #667eea;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-    </style>
 </head>
 <body>
 
@@ -312,4 +242,4 @@
 <a href="/books">На главную</a>
 
 </body>
-</html>-->
+</html>

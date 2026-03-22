@@ -238,27 +238,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Книга</title>
+    <title>Читатель</title>
 </head>
 <body>
 
 <div>
-    <a th:text="${book.getBook_id()}">value</a>
-    <br>
-    <a th:text="${book.getTitle()}">value</a>
-    <br>
-    <a th:text="${book.getAuthor()}">value</a>
-    <br>
-    <a th:text="${book.getYear()}">value</a>
+    <a th:text="${person.getFullName()} + ', ' + ${person.getBirthDate()} ">value</a>
     <br>
 </div>
 
 <br>
 <hr>
 
-<a th:href="@{/books/{id}/edit(id=${book.getBook_id()})}">Редактировать книгу</a>
+<a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Изменить данные читателя</a>
 <br>
-<a th:href="@{/books/{id}/delete(id=${book.getBook_id()})}">Удалить книгу</a>
+<a th:href="@{/people/{id}/delete(id=${person.getPerson_id()})}">Удалить читателя</a>
 
 </body>
 </html>

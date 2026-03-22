@@ -229,30 +229,25 @@
 <html lang="en" xmlns::th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Добавление книги</title>
+    <title>Добавление читателя</title>
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/books}" th:object="${book}">
-    <label for="title">Введите название книги</label>
-    <input type="text" th:field="*{title}" id="title">
-    <div style="color:red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="fullName">Введите ФИО</label>
+    <input type="text" th:field="*{fullName}" id="fullName">
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Full name error</div>
     <br>
 
-    <label for="author">Введите автора</label>
-    <input type="text" th:field="*{author}" id="author">
-    <div style="color:red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>
+    <label for="birthDate">Введите год рождения</label>
+    <input type="text" th:field="*{birthDate}" id="birthDate">
+    <div style="color:red" th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}">Birth date error</div>
     <br>
 
-    <label for="year">Введите год издания</label>
-    <input type="text" th:field="*{year}" id="year">
-    <div style="color:red" th:if="${#fields.hasErrors('year')}" th:errors="*{year}">Year error</div>
-    <br>
-
-    <input type="submit" value="Добавить книгу в библиотеку">
+    <input type="submit" value="Добавить читателя">
 </form>
 <br>
-<a href="/books">На главную</a>
+<a href="/people">На главную</a>
 
 </body>
 </html>
