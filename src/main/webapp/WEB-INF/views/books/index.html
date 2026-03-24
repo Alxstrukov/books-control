@@ -240,6 +240,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Книги</title>
+    <link rel="stylesheet" th:href="@{resources/static/css/style.css}">
 </head>
 <body>
 
@@ -250,8 +251,20 @@
 
 <br>
 <hr>
+<br>
 
-<a th:href="@{/books/new}" class="btn btn-blue">Добавить новую книгу</a>
+<div class="button-group">
+    <form th:action="@{/books/new}"
+          method="get">
+        <button type="submit">Добавить новую книгу</button>
+    </form>
+    <br>
+    <form th:action="@{/main}"
+          method="get">
+        <button type="submit">На главную</button>
+    </form>
+</div>
+
 
 </body>
 </html>

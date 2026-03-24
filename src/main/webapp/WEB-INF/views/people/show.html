@@ -250,9 +250,24 @@
 <br>
 <hr>
 
+<!-- Список книг (только если они есть) -->
+<div th:if="${!books.isEmpty()}">
+    <div th:each="book : ${books}">
+        <p th:text="${book.title}"></p>
+    </div>
+</div>
+
+<!-- Сообщение, если книг нет -->
+<div th:if="${books.isEmpty()}">
+    <p>Человек пока не взял ни одной книги</p>
+</div>
+
+<hr>
 <a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Изменить данные читателя</a>
 <br>
 <a th:href="@{/people/{id}/delete(id=${person.getPerson_id()})}">Удалить читателя</a>
+
+
 
 </body>
 </html>

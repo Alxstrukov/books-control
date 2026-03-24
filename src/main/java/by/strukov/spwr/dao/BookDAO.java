@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class BookDAO {
@@ -21,6 +20,14 @@ public class BookDAO {
     public List<Book> getListAllBooks() {
         String sqlQuery = "SELECT * FROM books";
         return jdbcTemplate.query(sqlQuery, new BeanPropertyRowMapper<>(Book.class));
+    }
+
+    public List<Book> getListPersonsBooks(int personID) {
+        String sqlQuery = "SELECT books.title, books.author, books.year " +
+                "FROM books INNER JOIN people on people.person_id = books.fk_owner_id " +
+                "WHERE person_id = ?";
+        List<Book> books = jdbcTemplate.query(sqlQuery, new Object[]{personID}, new BeanPropertyRowMapper<>(Book.class));
+        return books;
     }
 
     public void create(Book newBook) {
@@ -41,6 +48,11 @@ public class BookDAO {
                 updatedBook.getAuthor(),
                 updatedBook.getYear(),
                 updatedBook.getBook_id());
+    }
+
+    public void setBookOwner(Integer bookID, Integer ownerID) {
+        String sqlQuery = "UPDATE books SET fk_owner_id = ? WHERE book_id = ?";
+        jdbcTemplate.update(sqlQuery, ownerID, bookID);
     }
 
     public void delete(int id) {

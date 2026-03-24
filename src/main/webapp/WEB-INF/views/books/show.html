@@ -239,26 +239,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Книга</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 
 <div>
-    <a th:text="${book.getBook_id()}">value</a>
-    <br>
-    <a th:text="${book.getTitle()}">value</a>
-    <br>
-    <a th:text="${book.getAuthor()}">value</a>
-    <br>
-    <a th:text="${book.getYear()}">value</a>
+    <a th:text="${book.getTitle()}">value</a>, <a th:text="${book.getAuthor()}">value</a>, <a
+        th:text="${book.getYear()}">value</a>
     <br>
 </div>
 
 <br>
 <hr>
+<div th:if="${person != null}">
+    <p>Книгу читает: <span th:text="${person.fullName}"></span></p>
+    <form th:action="@{/books/{id}/deleteOwner(id=${book.getBook_id()})}"
+          th:method="POST">
+        <button type="submit">Освободить книгу</button>
+    </form>
+</div>
+<div th:if="${person == null}" class="button-group">
+    <p>Эта книга свободна</p>
 
-<a th:href="@{/books/{id}/edit(id=${book.getBook_id()})}">Редактировать книгу</a>
+    <form th:method="PATCH" th:action="@{/books/{id}/createOwner(id=${book.getBook_id()})}">
+        <label for="personId">Выберите человека</label>
+
+        <select name="personId" id="personId">
+            <option value="" disabled selected>-- Выберите --</option>
+            <option th:each="p : ${people}"
+                    th:value="${p.getPerson_id()}"
+                    th:text="${p.getFullName()}"></option>
+        </select>
+        <input type="submit" value="Назначить книгу"/>
+    </form>
+
+</div>
 <br>
-<a th:href="@{/books/{id}/delete(id=${book.getBook_id()})}">Удалить книгу</a>
+<hr>
+<form th:action="@{/books/{id}/edit(id=${book.getBook_id()})}"
+      method="get">
+    <button type="submit">Редактировать книгу</button>
+</form>
+<br>
+<form th:action="@{/books/{id}/delete(id=${book.getBook_id()})}"
+      method="get">
+    <button type="submit">Удалить книгу</button>
+</form>
+<br>
+<form th:action="@{/books}"
+      method="get">
+    <button type="submit">К списку книг</button>
+</form>
 
 </body>
 </html>

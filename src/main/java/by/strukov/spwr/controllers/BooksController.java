@@ -1,6 +1,7 @@
 package by.strukov.spwr.controllers;
 
 import by.strukov.spwr.dao.BookDAO;
+import by.strukov.spwr.dao.PersonDAO;
 import by.strukov.spwr.model.Book;
 import by.strukov.spwr.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.*;
 public class BooksController {
 
     private final BookDAO bookDAO;
+    private final PersonDAO personDAO;
     private final BookValidator validator;
 
     @Autowired
-    public BooksController(BookDAO bookDAO, BookValidator validator) {
+    public BooksController(BookDAO bookDAO, PersonDAO personDAO, BookValidator validator) {
         this.bookDAO = bookDAO;
+        this.personDAO = personDAO;
         this.validator = validator;
     }
 
@@ -45,8 +48,14 @@ public class BooksController {
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable("id") int id, Model model) {
-        model.addAttribute("book", bookDAO.show(id));
+    public String show(@PathVariable("id") int bookID, Model model) {
+        Book book = bookDAO.show(bookID);
+
+        if (book.getFkOwnerId() == null) book.setFkOwnerId(-1);
+
+        model.addAttribute("book", book);
+        model.addAttribute("person", personDAO.readByID(book.getFkOwnerId()));
+        model.addAttribute("people", personDAO.getAllPeople());
         return "books/show";
     }
 
@@ -71,5 +80,24 @@ public class BooksController {
     public String delete(@PathVariable("id") int id) {
         bookDAO.delete(id);
         return "redirect:/books";
+    }
+
+    @PostMapping("/{id}/deleteOwner")
+    public String deleteOwner(@PathVariable("id") int bookId, Model model) {
+        Book book = bookDAO.show(bookId);
+        book.setFkOwnerId(null);
+        bookDAO.setBookOwner(bookId, book.getFkOwnerId());
+        model.addAttribute("book", book);
+        model.addAttribute("people", personDAO.getAllPeople());
+        return "redirect:/books/" + bookId;
+    }
+
+    @PatchMapping("/{id}/createOwner")
+    public String createOwner(@PathVariable("id") Integer bookID, @RequestParam("personId") Integer personID,
+                              Model model) {
+        bookDAO.setBookOwner(bookID, personID);
+        model.addAttribute("book", bookDAO.show(bookID));
+        model.addAttribute("people", personDAO.getAllPeople());
+        return "redirect:/books/" + bookID;
     }
 }

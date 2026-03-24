@@ -1,5 +1,6 @@
 package by.strukov.spwr.controllers;
 
+import by.strukov.spwr.dao.BookDAO;
 import by.strukov.spwr.dao.PersonDAO;
 import by.strukov.spwr.model.Person;
 import jakarta.validation.Valid;
@@ -15,10 +16,12 @@ import java.time.LocalDate;
 @RequestMapping("/people")
 public class PeopleController {
     private PersonDAO personDAO;
+    private BookDAO bookDAO;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO) {
+    public PeopleController(PersonDAO personDAO, BookDAO bookDAO) {
         this.personDAO = personDAO;
+        this.bookDAO = bookDAO;
     }
 
     @GetMapping()
@@ -30,6 +33,7 @@ public class PeopleController {
     @GetMapping("/{id}")
     public String show(@PathVariable("id") int person_id, Model model) {
         model.addAttribute("person", personDAO.readByID(person_id));
+        model.addAttribute("books", bookDAO.getListPersonsBooks(person_id));
         return "people/show";
     }
 

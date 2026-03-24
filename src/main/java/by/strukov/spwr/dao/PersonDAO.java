@@ -20,7 +20,8 @@ public class PersonDAO {
     public List<Person> getAllPeople() {
         String sqlQuery = "SELECT * FROM people";
         List<Person> people = jdbcTemplate.query(sqlQuery, new BeanPropertyRowMapper<>(Person.class));
-        return people;
+
+        return people.stream().sorted().toList();
     }
 
     public void create(Person newPerson) {

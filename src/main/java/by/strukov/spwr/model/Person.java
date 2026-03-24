@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Person {
+public class Person implements Comparable<Person> {
     private Integer person_id;//очень ВАЖНО чтобы имя поля совпадало с именем столбца в БД
 
     @NotEmpty(message = "Поле не может быть пустым")
@@ -22,4 +22,9 @@ public class Person {
     @NotNull(message = "Вы не указали дату рождения")
     @Min(value = 1900, message = "Год не может быть ранее 1900")
     private Integer birthDate;
+
+    @Override
+    public int compareTo(Person o) {
+        return this.fullName.compareTo(o.fullName);
+    }
 }
