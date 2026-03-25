@@ -243,8 +243,7 @@
 <body>
 
 <div>
-    <a th:text="${person.getFullName()} + ', ' + ${person.getBirthDate()} ">value</a>
-    <br>
+    <h1 th:text="${person.getFullName()} + ', ' + ${person.getBirthDate()} ">value</h1>
 </div>
 
 <br>
@@ -252,6 +251,7 @@
 
 <!-- Список книг (только если они есть) -->
 <div th:if="${!books.isEmpty()}">
+    <h2 style="color: maroon">Список взятых книг</h2>
     <div th:each="book : ${books}">
         <p th:text="${book.title}"></p>
     </div>
@@ -263,11 +263,21 @@
 </div>
 
 <hr>
-<a th:href="@{/people/{id}/edit(id=${person.getPerson_id()})}">Изменить данные читателя</a>
+<form th:method="PATCH" th:action="@{/people/{id}/edit(id=${person.getPerson_id()})}" th:object="${person}">
+    <input type="submit" value="Изменить данные читателя">
+</form>
 <br>
-<a th:href="@{/people/{id}/delete(id=${person.getPerson_id()})}">Удалить читателя</a>
-
-
+<form th:method="DELETE"  th:action="@{/people/{id}/delete(id=${person.getPerson_id()})}" th:object="${person}">
+    <input type="submit" value="Удалить читателя">
+</form>
+<hr>
+<form th:method="GET" th:action="@{/people}">
+    <input type="submit" value="К списку людей">
+</form>
+<br>
+<form th:method="GET" th:action="@{/main}">
+    <input type="submit" value="На главную">
+</form>
 
 </body>
 </html>

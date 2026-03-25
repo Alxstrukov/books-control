@@ -251,7 +251,13 @@
 <br>
 <hr>
 
-<a th:href="@{/people/new}" class="btn btn-blue">Добавить нового читателя</a>
+<form th:method="GET" th:action="@{/people/new}">
+    <input type="submit" value="Добавить нового читателя">
+</form>
+<br>
+<form th:method="GET" th:action="@{/main}">
+    <input type="submit" value="На главную">
+</form>
 
 </body>
 </html>

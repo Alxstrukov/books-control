@@ -1,9 +1,7 @@
-package by.strukov.spwr.util;
+package by.strukov.library.util;
 
-import by.strukov.spwr.dao.BookDAO;
-import by.strukov.spwr.dao.PersonDAO;
-import by.strukov.spwr.model.Book;
-import by.strukov.spwr.model.Person;
+import by.strukov.library.dao.BookDAO;
+import by.strukov.library.model.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;

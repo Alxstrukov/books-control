@@ -1,9 +1,9 @@
-package by.strukov.spwr.controllers;
+package by.strukov.library.controllers;
 
-import by.strukov.spwr.dao.BookDAO;
-import by.strukov.spwr.dao.PersonDAO;
-import by.strukov.spwr.model.Book;
-import by.strukov.spwr.util.BookValidator;
+import by.strukov.library.dao.BookDAO;
+import by.strukov.library.dao.PersonDAO;
+import by.strukov.library.model.Book;
+import by.strukov.library.util.BookValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

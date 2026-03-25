@@ -252,7 +252,7 @@
 <br>
 <hr>
 <div th:if="${person != null}">
-    <p>Книгу читает: <span th:text="${person.fullName}"></span></p>
+    <p>Книгу читает: <a th:href="@{/people/{id}(id=${person.getPerson_id()})}" th:text="${person.fullName}">Человек</a></p>
     <form th:action="@{/books/{id}/deleteOwner(id=${book.getBook_id()})}"
           th:method="POST">
         <button type="submit">Освободить книгу</button>

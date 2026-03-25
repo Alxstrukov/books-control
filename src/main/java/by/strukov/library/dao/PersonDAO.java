@@ -1,6 +1,6 @@
-package by.strukov.spwr.dao;
+package by.strukov.library.dao;
 
-import by.strukov.spwr.model.Person;
+import by.strukov.library.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

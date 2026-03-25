@@ -5,18 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db484c03-3432-47ad-9111-ce9f8c35d2df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/BooksController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/PeopleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/BookDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/PersonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/PersonDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/config/DispatcherServletInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/config/DispatcherServletInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/config/SpringConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/config/SpringConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/BooksController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/controllers/BooksController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/controllers/PeopleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/controllers/PeopleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/BookDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/dao/BookDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/dao/PersonDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/dao/PersonDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/model/Book.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/by/strukov/spwr/util/BookValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/by/strukov/library/util/BookValidator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/edit.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/books/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/main/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/edit.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/new.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/people/show.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,9 +70,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -111,7 +118,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Table Diff",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -285,8 +292,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.books-control [clean]" />
         <item itemvalue="Gradle.books-control [build]" />
+        <item itemvalue="Gradle.books-control [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -315,6 +322,16 @@
       <workItem from="1774370547620" duration="3526000" />
       <workItem from="1774377129600" duration="1343000" />
       <workItem from="1774378602704" duration="983000" />
+      <workItem from="1774379615573" duration="168000" />
+      <workItem from="1774380802470" duration="112000" />
+      <workItem from="1774436324665" duration="1853000" />
+      <workItem from="1774438275316" duration="50000" />
+      <workItem from="1774438353638" duration="582000" />
+      <workItem from="1774438978447" duration="252000" />
+      <workItem from="1774439269840" duration="75000" />
+      <workItem from="1774439368835" duration="610000" />
+      <workItem from="1774440026317" duration="449000" />
+      <workItem from="1774440512336" duration="9134000" />
     </task>
     <servers />
   </component>

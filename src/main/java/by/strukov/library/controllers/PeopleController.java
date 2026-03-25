@@ -1,8 +1,8 @@
-package by.strukov.spwr.controllers;
+package by.strukov.library.controllers;
 
-import by.strukov.spwr.dao.BookDAO;
-import by.strukov.spwr.dao.PersonDAO;
-import by.strukov.spwr.model.Person;
+import by.strukov.library.dao.BookDAO;
+import by.strukov.library.dao.PersonDAO;
+import by.strukov.library.model.Person;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-    private PersonDAO personDAO;
-    private BookDAO bookDAO;
+    private final PersonDAO personDAO;
+    private final BookDAO bookDAO;
 
     @Autowired
     public PeopleController(PersonDAO personDAO, BookDAO bookDAO) {
@@ -37,7 +37,7 @@ public class PeopleController {
         return "people/show";
     }
 
-    @GetMapping("/{id}/edit")
+    @PatchMapping("/{id}/edit")
     public String edit(@PathVariable("id") int id, Model model) {
         model.addAttribute("person", personDAO.readByID(id));
         return "people/edit";
@@ -47,6 +47,7 @@ public class PeopleController {
     public String update(@PathVariable("id") int person_id,
                          @ModelAttribute("person") @Valid Person updatedPerson, BindingResult bindingResult) {
         updatedPerson.setPerson_id(person_id);
+
         if (updatedPerson.getBirthDate() > LocalDate.now().getYear())
             bindingResult.rejectValue("birthDate",
                     "error.birthDate",
@@ -58,7 +59,7 @@ public class PeopleController {
         return "redirect:/people";
     }
 
-    @GetMapping("/{id}/delete")
+    @DeleteMapping("/{id}/delete")
     public String delete(@PathVariable("id") int id) {
         personDAO.delete(id);
         return "redirect:/people";

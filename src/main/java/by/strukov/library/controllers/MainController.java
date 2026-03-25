@@ -1,4 +1,4 @@
-package by.strukov.spwr.controllers;
+package by.strukov.library.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,12 +1,10 @@
-package by.strukov.spwr.model;
+package by.strukov.library.model;
 
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor

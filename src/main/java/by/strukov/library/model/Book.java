@@ -1,4 +1,4 @@
-package by.strukov.spwr.model;
+package by.strukov.library.model;
 
 
 import jakarta.validation.constraints.*;

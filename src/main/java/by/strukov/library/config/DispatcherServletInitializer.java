@@ -1,4 +1,4 @@
-package by.strukov.spwr.config;
+package by.strukov.library.config;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
